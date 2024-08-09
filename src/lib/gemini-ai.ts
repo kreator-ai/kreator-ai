@@ -1,8 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 
-const apiKey = process.env.GEMINI_API_KEY;
-const genAI = new GoogleGenerativeAI(AIzaSyCLmfYbPTBGutb9kwDW-gnyPjQNQSSpqZk);
+const apiKey = process.env.NEXT_PUBLIC_GOOGLE_GEMINI_API_KEY;
+const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
   model: "gemini-1.5-flash",
@@ -16,7 +16,11 @@ const generationConfig = {
   responseMimeType: "text/plain",
 };
 
-export const chatSession = model.startChat({
-  generationConfig: generationConfig,
-  history: [],
-});
+
+  export const chatSession = model.startChat({
+    generationConfig,
+ // safetySettings: Adjust safety settings
+ // See https://ai.google.dev/gemini-api/docs/safety-settings
+    history: [
+    ],
+  });
